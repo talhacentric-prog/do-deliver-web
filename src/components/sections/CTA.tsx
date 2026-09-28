@@ -37,7 +37,7 @@ export default function CTA() {
               <div className="relative p-7 sm:p-10 lg:p-12">
                 <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-red">
                   <Sparkles className="h-3.5 w-3.5" />
-                  Merchant boarding
+                  Onboarding Setup
                 </div>
 
                 <h2 className="mt-5 max-w-lg font-display text-[clamp(2.1rem,5vw,3.6rem)] font-bold leading-[0.98] tracking-tight text-white">
@@ -64,10 +64,10 @@ export default function CTA() {
 
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
-                    href="/contact"
+                    href="/contact#book"
                     className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-red px-7 py-3.5 text-[13px] font-semibold uppercase tracking-wide text-white"
                   >
-                    <span className="relative z-10">Start Shipping</span>
+                    <span className="relative z-10">Book Now</span>
                     <ArrowUpRight className="relative z-10 h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     <span className="absolute inset-0 translate-y-full bg-red-deep transition duration-300 group-hover:translate-y-0" />
                   </Link>
@@ -108,7 +108,7 @@ export default function CTA() {
               {/* Stub panel */}
               <div className="relative border-t border-white/10 bg-white/[0.03] p-7 sm:p-10 lg:border-t-0 lg:p-12">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40">
-                  Boarding stub
+                  Onboarding Setup
                 </p>
                 <ul className="mt-6 space-y-5">
                   {[

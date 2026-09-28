@@ -5,6 +5,7 @@ import CTA from "@/components/sections/CTA";
 import DashboardPreview from "@/components/sections/DashboardPreview";
 import Hero from "@/components/sections/Hero";
 import Partners from "@/components/sections/Partners";
+import RiderApply from "@/components/sections/RiderApply";
 import Services from "@/components/sections/Services";
 import Tracking from "@/components/sections/Tracking";
 import WhyUs from "@/components/sections/WhyUs";
@@ -18,6 +19,7 @@ export default function Home() {
         <Hero />
         <Services />
         <DashboardPreview />
+        <RiderApply />
         <Partners />
         <WhyUs />
         <Tracking />

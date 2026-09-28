@@ -15,11 +15,11 @@ export default function Hero() {
           alt=""
           fill
           priority
-          className="object-cover object-center opacity-45"
+          className="object-cover object-center opacity-25"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/92 to-ink/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink to-ink/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/35 to-ink/70" />
         {/* Low-poly geometric edge */}
         <div
           className="pointer-events-none absolute inset-y-0 left-0 w-[42%] opacity-40"
@@ -67,10 +67,10 @@ export default function Hero() {
           transition={{ duration: 0.65, delay: 0.4 }}
         >
           <Link
-            href="#signin"
+            href="/contact#book"
             className="inline-flex items-center gap-2 rounded-md bg-red px-6 py-3.5 text-[13px] font-semibold uppercase tracking-wide text-white transition hover:bg-red-deep"
           >
-            Start Shipping
+            Book Now
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link

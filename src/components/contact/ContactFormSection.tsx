@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
+import { ADDRESS, EMAIL, EMAIL_HREF, MAP_LINK, PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
 import { FormEvent, useState, type ReactNode } from "react";
 import {
   Headphones,
@@ -16,26 +17,20 @@ import {
 const infoCards = [
   {
     label: "Call Us Anytime",
-    value: "03 111 363 333",
-    href: "tel:03111363333",
+    value: PHONE_DISPLAY,
+    href: PHONE_HREF,
     icon: Headphones,
   },
   {
     label: "Make a Quote",
-    value: "info@dodeliver.com.pk",
-    href: "mailto:info@dodeliver.com.pk",
+    value: EMAIL,
+    href: EMAIL_HREF,
     icon: Mail,
   },
   {
     label: "Head Office",
-    value: "29C Old Clifton, Block 5, Karachi, Pakistan.",
-    href: "https://maps.google.com/?q=29C+Old+Clifton+Block+5+Karachi+Pakistan",
-    icon: MapPin,
-  },
-  {
-    label: "Lahore Office",
-    value: "Lahore, Pakistan.",
-    href: "https://maps.google.com/?q=Lahore+Pakistan",
+    value: ADDRESS,
+    href: MAP_LINK,
     icon: MapPin,
   },
 ];
@@ -46,16 +41,26 @@ export default function ContactFormSection() {
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const body = [
+      `Name: ${data.get("name")}`,
+      `Email: ${data.get("email")}`,
+      `Phone: ${data.get("phone")}`,
+      "",
+      String(data.get("message") ?? ""),
+    ].join("\n");
     setLoading(true);
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent("Book Now — DoDeliver")}&body=${encodeURIComponent(body)}`;
     window.setTimeout(() => {
       setLoading(false);
       setSent(true);
-      (e.target as HTMLFormElement).reset();
-    }, 900);
+      form.reset();
+    }, 400);
   }
 
   return (
-    <section className="relative overflow-hidden bg-background py-16 sm:py-24">
+    <section id="book" className="relative scroll-mt-28 overflow-hidden bg-background py-16 sm:py-24">
       <div
         className="pointer-events-none absolute -right-20 top-20 h-72 w-72 rotate-12 bg-red/[0.04]"
         style={{ clipPath: "polygon(15% 0, 100% 0, 85% 100%, 0 100%)" }}
@@ -144,13 +149,13 @@ export default function ContactFormSection() {
                 disabled={loading}
                 className="group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-red px-6 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-red-deep disabled:opacity-70 sm:w-auto"
               >
-                {loading ? "Sending…" : "Send Message Now"}
+                {loading ? "Opening email…" : "Book Now"}
                 <Send className="h-4 w-4 transition group-hover:translate-x-0.5" />
               </button>
 
               {sent && (
                 <p className="text-[13px] font-medium text-emerald-600">
-                  Message received — our team will reach out shortly.
+                  Your email app should open with this booking ready to send.
                 </p>
               )}
             </form>

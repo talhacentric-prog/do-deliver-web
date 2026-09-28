@@ -1,11 +1,9 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
+import { ADDRESS_LINES, MAP_EMBED, MAP_LINK } from "@/lib/site";
 import { motion } from "framer-motion";
 import { ExternalLink, Navigation, Radio } from "lucide-react";
-
-const MAP_SRC =
-  "https://maps.google.com/maps?q=29C+Old+Clifton+Block+5+Karachi+Pakistan&t=&z=16&ie=UTF8&iwloc=&output=embed";
 
 export default function ContactMap() {
   return (
@@ -37,11 +35,11 @@ export default function ContactMap() {
                 Head office, locked on map
               </h2>
               <p className="mt-2 max-w-md text-[14px] text-white/55">
-                29C Old Clifton, Block 5, Karachi — beacon keeps pulsing so you never miss the hub.
+                {ADDRESS_LINES[0]}, {ADDRESS_LINES[1]}, {ADDRESS_LINES[2]}.
               </p>
             </div>
             <a
-              href="https://maps.google.com/?q=29C+Old+Clifton+Block+5+Karachi+Pakistan"
+              href={MAP_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-white transition hover:border-red hover:bg-red"
@@ -57,8 +55,8 @@ export default function ContactMap() {
             {/* Map canvas */}
             <div className="relative h-[420px] sm:h-[500px] lg:h-[560px]">
               <iframe
-                title="DoDeliver Head Office — Old Clifton, Karachi"
-                src={MAP_SRC}
+                title="DoDeliver Head Office — KMCHS Alamgir Road, Karachi"
+                src={MAP_EMBED}
                 className="h-full w-full scale-[1.02] border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -158,13 +156,15 @@ export default function ContactMap() {
                       <span className="text-red">Do</span>Deliver Karachi Hub
                     </p>
                     <p className="mt-1 text-[13px] leading-relaxed text-white/60">
-                      29C Old Clifton, Block 5
+                      {ADDRESS_LINES[0]}
                       <br />
-                      Karachi, Pakistan
+                      {ADDRESS_LINES[1]}
+                      <br />
+                      {ADDRESS_LINES[2]}, Pakistan
                     </p>
                     <div className="mt-4 flex items-center gap-3">
                       <a
-                        href="https://maps.google.com/?q=29C+Old+Clifton+Block+5+Karachi+Pakistan"
+                        href={MAP_LINK}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-red px-4 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-white transition hover:bg-red-deep"
@@ -174,7 +174,7 @@ export default function ContactMap() {
                       </a>
                       <div className="hidden rounded-xl border border-white/10 px-3 py-2 text-center sm:block">
                         <p className="text-[9px] uppercase tracking-wider text-white/40">Zone</p>
-                        <p className="font-display text-sm font-bold text-white">Clifton</p>
+                        <p className="font-display text-sm font-bold text-white">KMCHS</p>
                       </div>
                     </div>
                   </div>
@@ -183,7 +183,7 @@ export default function ContactMap() {
 
               {/* Corner coordinates tick */}
               <div className="pointer-events-none absolute right-4 top-4 hidden rounded-lg border border-white/10 bg-ink/60 px-3 py-2 font-mono text-[10px] tracking-wider text-white/45 backdrop-blur-sm sm:block">
-                24.81°N · 67.03°E
+                KMCHS · Karachi
               </div>
             </div>
           </div>

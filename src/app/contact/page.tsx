@@ -9,7 +9,7 @@ import PageHero from "@/components/contact/PageHero";
 export const metadata: Metadata = {
   title: "Contact Us — DoDeliver",
   description:
-    "Get in touch with DoDeliver. Call, email, or visit our head office at 29C Old Clifton, Block 5, Karachi.",
+    "Get in touch with DoDeliver. Call 021-38884408 or visit 77/3 KMCHS Alamgir Road, Karachi.",
 };
 
 export default function ContactPage() {

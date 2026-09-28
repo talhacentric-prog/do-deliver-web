@@ -12,13 +12,14 @@ import {
   Gauge,
   Plug,
 } from "lucide-react";
+import { HUB_CITIES } from "@/lib/site";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
   { value: 120, suffix: "+", label: "Cities Live" },
   { value: 50, suffix: "K+", label: "Monthly Parcels" },
   { value: 98, suffix: "%", label: "On-Time Rate" },
-  { value: 2, suffix: "", label: "Hub Cities" },
+  { value: 6, suffix: "", label: "Hub Cities" },
 ];
 
 const pillars = [
@@ -159,15 +160,16 @@ export default function WhyUs() {
                 Hubs
               </span>
               <span className="h-1 w-1 rounded-full bg-white/50" />
-              <span className="inline-flex items-center gap-2 rounded-full bg-black/20 px-3 py-1.5">
-                <MapPinned className="h-3.5 w-3.5" />
-                Karachi · Old Clifton
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-black/20 px-3 py-1.5">
-                <MapPinned className="h-3.5 w-3.5" />
-                Lahore Office
-              </span>
-              <span className="ml-auto hidden text-[12px] text-white/60 sm:inline">
+              {HUB_CITIES.map((city) => (
+                <span
+                  key={city}
+                  className="inline-flex items-center gap-2 rounded-full bg-black/20 px-3 py-1.5"
+                >
+                  <MapPinned className="h-3.5 w-3.5" />
+                  {city}
+                </span>
+              ))}
+              <span className="text-[12px] text-white/60">
                 Nationwide last-mile · Seller-first ops
               </span>
             </div>

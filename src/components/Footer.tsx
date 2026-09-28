@@ -1,5 +1,13 @@
 "use client";
 
+import {
+  ADDRESS_LINES,
+  EMAIL,
+  EMAIL_HREF,
+  HUB_CITIES,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+} from "@/lib/site";
 import { ArrowUp, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import { socialLinks } from "./socialLinks";
@@ -14,12 +22,10 @@ const rail = [
 ];
 
 const ticker = [
-  "KARACHI HUB",
-  "LAHORE OFFICE",
+  ...HUB_CITIES.map((city) => `${city.toUpperCase()} HUB`),
   "NATIONWIDE LAST-MILE",
   "COD SETTLEMENT",
   "LIVE TRACKING",
-  "MERCHANT FIRST",
 ];
 
 export default function Footer() {
@@ -103,30 +109,28 @@ export default function Footer() {
             </p>
             <ul className="mt-5 space-y-4 text-[14px] text-white/70">
               <li>
-                <a href="tel:03111363333" className="flex items-start gap-3 transition hover:text-white">
+                <a href={PHONE_HREF} className="flex items-start gap-3 transition hover:text-white">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-red" />
-                  <span>
-                    03 111 363 333
-                    <br />
-                    <span className="text-white/40">0345 111 3633</span>
-                  </span>
+                  <span>{PHONE_DISPLAY}</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:info@dodeliver.com.pk"
+                  href={EMAIL_HREF}
                   className="flex items-start gap-3 transition hover:text-white"
                 >
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-red" />
-                  info@dodeliver.com.pk
+                  {EMAIL}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-red" />
                 <span>
-                  29C Old Clifton, Block 5
+                  {ADDRESS_LINES[0]}
                   <br />
-                  Karachi · Lahore
+                  {ADDRESS_LINES[1]}
+                  <br />
+                  {ADDRESS_LINES[2]}
                 </span>
               </li>
             </ul>
@@ -159,10 +163,10 @@ export default function Footer() {
         <div className="flex flex-col items-start justify-between gap-4 border-t border-white/10 py-6 text-[13px] text-white/40 sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} DoDeliver · All rights reserved</p>
           <div className="flex items-center gap-5">
-            <Link href="/contact" className="transition hover:text-white">
+            <Link href="/privacy" className="transition hover:text-white">
               Privacy
             </Link>
-            <Link href="/contact" className="transition hover:text-white">
+            <Link href="/terms" className="transition hover:text-white">
               Terms
             </Link>
             <button

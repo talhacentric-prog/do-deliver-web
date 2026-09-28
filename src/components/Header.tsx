@@ -5,6 +5,7 @@ import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
 import Logo from "./Logo";
 import { socialLinks } from "./socialLinks";
 
@@ -61,11 +62,11 @@ export default function Header() {
                 </div>
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:03111363333"
+                    href={PHONE_HREF}
                     className="hidden items-center gap-1.5 transition hover:text-white sm:inline-flex"
                   >
                     <Phone className="h-3 w-3 text-red" />
-                    03 111 363 333
+                    {PHONE_DISPLAY}
                   </a>
                   <div className="flex items-center gap-1.5">
                     {socialLinks.map(({ href, label, Icon }) => (
@@ -102,7 +103,7 @@ export default function Header() {
           >
             {/* Brand + dispatch route */}
             <div className="flex min-w-0 items-center gap-3">
-              <Logo variant="light" />
+              <Logo />
               <div className="hidden h-8 w-px bg-white/15 md:block" />
               <div className="hidden flex-col text-white/45 md:flex">
                 <span className="text-[9px] font-semibold uppercase tracking-[0.22em]">
@@ -149,22 +150,22 @@ export default function Header() {
 
             <div className="ml-auto flex items-center gap-2">
               <Link
-                href="/#tracking"
-                className="hidden items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-[12px] font-semibold uppercase tracking-wide text-white transition hover:bg-white/10 sm:inline-flex"
+                href="/contact#book"
+                className="group relative inline-flex overflow-hidden rounded-full bg-red px-4 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-white sm:px-5"
               >
-                Track
+                <span className="relative z-10 inline-flex items-center gap-1">
+                  Book Now
+                  <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
+                <span className="absolute inset-0 translate-y-full bg-red-deep transition duration-300 group-hover:translate-y-0" />
               </Link>
               <a
                 href="https://portal.dodeliver.com.pk/login"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative hidden overflow-hidden rounded-full bg-red px-5 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-white sm:inline-flex"
+                className="hidden items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-[12px] font-semibold uppercase tracking-wide text-white transition hover:bg-white/10 sm:inline-flex"
               >
-                <span className="relative z-10 inline-flex items-center gap-1">
-                  Sign In
-                  <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
-                <span className="absolute inset-0 translate-y-full bg-red-deep transition duration-300 group-hover:translate-y-0" />
+                Sign In
               </a>
 
               <button
@@ -190,7 +191,7 @@ export default function Header() {
             exit={{ opacity: 0 }}
           >
             <div className="flex items-center justify-between px-5 py-4">
-              <Logo variant="light" />
+              <Logo />
               <button
                 type="button"
                 onClick={() => setOpen(false)}
@@ -229,22 +230,20 @@ export default function Header() {
             </nav>
 
             <div className="space-y-3 px-6 pb-10">
-              <a
-                href="https://portal.dodeliver.com.pk/login"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact#book"
                 onClick={() => setOpen(false)}
                 className="flex items-center justify-center gap-2 rounded-full bg-red py-3.5 text-[13px] font-semibold uppercase tracking-wide"
               >
-                Sign In
+                Book Now
                 <ArrowUpRight className="h-4 w-4" />
-              </a>
+              </Link>
               <a
-                href="tel:03111363333"
+                href={PHONE_HREF}
                 className="flex items-center justify-center gap-2 text-[13px] text-white/55"
               >
                 <Phone className="h-3.5 w-3.5 text-red" />
-                03 111 363 333
+                {PHONE_DISPLAY}
               </a>
             </div>
           </motion.div>

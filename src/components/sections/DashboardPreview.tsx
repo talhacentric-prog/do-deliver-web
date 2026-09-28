@@ -3,9 +3,8 @@
 import Reveal from "@/components/Reveal";
 import { motion } from "framer-motion";
 import { ArrowUpRight, LayoutDashboard, Package, ShieldCheck, Wallet } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const highlights = [
   {
@@ -25,29 +24,7 @@ const highlights = [
   },
 ];
 
-/**
- * Drop your screenshot here tomorrow:
- * public/merchant-portal.png
- */
-const PORTAL_SRC = "/merchant-portal.png";
-
 export default function DashboardPreview() {
-  const [imgOk, setImgOk] = useState(false);
-
-  useEffect(() => {
-    let alive = true;
-    fetch(PORTAL_SRC, { method: "HEAD" })
-      .then((res) => {
-        if (alive) setImgOk(res.ok);
-      })
-      .catch(() => {
-        if (alive) setImgOk(false);
-      });
-    return () => {
-      alive = false;
-    };
-  }, []);
-
   return (
     <section id="dashboard" className="relative overflow-hidden bg-surface py-20 sm:py-28">
       {/* Soft editorial atmosphere */}
@@ -140,17 +117,7 @@ export default function DashboardPreview() {
                 </div>
 
                 <div className="relative aspect-[16/10] bg-background">
-                  {imgOk ? (
-                    <Image
-                      src={PORTAL_SRC}
-                      alt="DoDeliver merchant portal dashboard"
-                      fill
-                      className="object-cover object-top"
-                      sizes="(max-width: 1024px) 100vw, 55vw"
-                    />
-                  ) : (
-                    <PortalPlaceholder />
-                  )}
+                  <LiveDesk />
 
                   {/* Soft vignette */}
                   <div
@@ -179,74 +146,82 @@ export default function DashboardPreview() {
   );
 }
 
-function PortalPlaceholder() {
+const seedFeed = [
+  { id: "DD-18420", city: "Karachi", status: "Out for delivery" },
+  { id: "DD-18419", city: "Lahore", status: "Hub scan" },
+  { id: "DD-18418", city: "Islamabad", status: "Picked up" },
+  { id: "DD-18417", city: "Multan", status: "In transit" },
+];
+
+function LiveDesk() {
+  const [tick, setTick] = useState(0);
+  const [feed, setFeed] = useState(seedFeed);
+  const seq = useRef(18421);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setTick((n) => n + 1);
+      setFeed((rows) => {
+        const nextId = seq.current++;
+        const cities = ["Karachi", "Lahore", "Rawalpindi", "Islamabad", "Faisalabad", "Multan"];
+        const statuses = ["Hub scan", "Out for delivery", "Picked up", "COD collected"];
+        const row = {
+          id: `DD-${nextId}`,
+          city: cities[nextId % cities.length],
+          status: statuses[nextId % statuses.length],
+        };
+        return [row, ...rows].slice(0, 4);
+      });
+    }, 2200);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const stats = [
+    { label: "Live", value: 128 + (tick % 7) },
+    { label: "COD", value: `${42 + (tick % 5)}k` },
+    { label: "Hubs", value: "6" },
+    { label: "On time", value: "98%" },
+  ];
+
   return (
-    <div className="absolute inset-0 flex flex-col bg-[#f6f4f1] p-5 sm:p-7">
-      <div className="flex items-center justify-between">
+    <div className="absolute inset-0 flex flex-col bg-[#f6f4f1] p-4 sm:p-6">
+      <div className="flex items-center justify-between gap-3">
         <div>
-          <div className="h-2.5 w-24 rounded-full bg-ink/10" />
-          <div className="mt-2 h-4 w-40 rounded-full bg-ink/15" />
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted">
+            Merchant desk
+          </p>
+          <p className="font-display text-sm font-bold text-ink">Live shipments</p>
         </div>
-        <div className="flex gap-2">
-          {["24h", "7d", "30d"].map((t, i) => (
-            <span
-              key={t}
-              className={`rounded-md px-2.5 py-1 text-[10px] font-medium ${
-                i === 0 ? "bg-red text-white" : "bg-white text-muted"
-              }`}
-            >
-              {t}
-            </span>
-          ))}
-        </div>
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-red">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red opacity-70" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red" />
+          </span>
+          Updating
+        </span>
       </div>
 
-      <div className="mt-5 grid grid-cols-3 gap-2.5 sm:grid-cols-6">
-        {["#fee2e2", "#dcfce7", "#e0f2fe", "#fef3c7", "#f3e8ff", "#f1f5f9"].map((c, i) => (
-          <div key={i} className="rounded-lg bg-white p-2.5 shadow-sm" style={{ borderTop: `2px solid ${c}` }}>
-            <div className="h-1.5 w-10 rounded-full bg-ink/10" />
-            <div className="mt-2 h-5 w-8 rounded bg-ink/15" />
+      <div className="mt-4 grid grid-cols-4 gap-2">
+        {stats.map((stat) => (
+          <div key={stat.label} className="rounded-lg bg-white px-2 py-2 shadow-sm sm:px-3">
+            <p className="text-[9px] uppercase tracking-wider text-muted">{stat.label}</p>
+            <p className="font-display text-sm font-bold text-ink sm:text-base">{stat.value}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-4 grid flex-1 gap-3 sm:grid-cols-[1.4fr_1fr]">
-        <div className="rounded-xl bg-white p-4 shadow-sm">
-          <div className="h-2 w-20 rounded-full bg-ink/10" />
-          <svg viewBox="0 0 220 70" className="mt-4 h-16 w-full" aria-hidden>
-            <defs>
-              <linearGradient id="portalArea" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#e10600" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#e10600" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0 50 L30 42 L55 48 L85 30 L115 36 L145 18 L175 26 L220 12 L220 70 L0 70 Z"
-              fill="url(#portalArea)"
-            />
-            <path
-              d="M0 50 L30 42 L55 48 L85 30 L115 36 L145 18 L175 26 L220 12"
-              fill="none"
-              stroke="#e10600"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
-        <div className="grid grid-rows-2 gap-3">
-          <div className="rounded-xl bg-white p-4 shadow-sm" />
-          <div className="rounded-xl bg-white p-4 shadow-sm" />
-        </div>
-      </div>
-
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div className="rounded-full border border-dashed border-ink/20 bg-white/80 px-5 py-2.5 text-center backdrop-blur-sm">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
-            Portal image slot
-          </p>
-          <p className="mt-1 font-mono text-[12px] text-ink/50">public/merchant-portal.png</p>
-        </div>
-      </div>
+      <ul className="mt-3 flex-1 space-y-1.5 overflow-hidden">
+        {feed.map((row) => (
+          <li
+            key={row.id}
+            className="flex items-center justify-between gap-2 rounded-lg bg-white px-3 py-2 text-[12px] shadow-sm"
+          >
+            <span className="font-mono text-[11px] text-ink">{row.id}</span>
+            <span className="text-muted">{row.city}</span>
+            <span className="text-red">{row.status}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
