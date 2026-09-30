@@ -1,18 +1,9 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
-import { ADDRESS, EMAIL, EMAIL_HREF, MAP_LINK, PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
+import { EMAIL, EMAIL_HREF, PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
 import { FormEvent, useState, type ReactNode } from "react";
-import {
-  Headphones,
-  Mail,
-  MapPin,
-  MessageSquare,
-  Phone,
-  Send,
-  Smartphone,
-  User,
-} from "lucide-react";
+import { Headphones, Mail, MessageSquare, Phone, Send, Smartphone, User } from "lucide-react";
 
 const infoCards = [
   {
@@ -26,12 +17,6 @@ const infoCards = [
     value: EMAIL,
     href: EMAIL_HREF,
     icon: Mail,
-  },
-  {
-    label: "Head Office",
-    value: ADDRESS,
-    href: MAP_LINK,
-    icon: MapPin,
   },
 ];
 

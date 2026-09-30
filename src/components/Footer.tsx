@@ -1,14 +1,7 @@
 "use client";
 
-import {
-  ADDRESS_LINES,
-  EMAIL,
-  EMAIL_HREF,
-  HUB_CITIES,
-  PHONE_DISPLAY,
-  PHONE_HREF,
-} from "@/lib/site";
-import { ArrowUp, Mail, MapPin, Phone } from "lucide-react";
+import { EMAIL, EMAIL_HREF, HUB_CITIES, PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
+import { ArrowUp, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import { socialLinks } from "./socialLinks";
 
@@ -122,16 +115,6 @@ export default function Footer() {
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-red" />
                   {EMAIL}
                 </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-red" />
-                <span>
-                  {ADDRESS_LINES[0]}
-                  <br />
-                  {ADDRESS_LINES[1]}
-                  <br />
-                  {ADDRESS_LINES[2]}
-                </span>
               </li>
             </ul>
           </div>

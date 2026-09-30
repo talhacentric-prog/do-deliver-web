@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import PageHero from "@/components/contact/PageHero";
-import { ADDRESS, EMAIL, PHONE_DISPLAY } from "@/lib/site";
+import { EMAIL, PHONE_DISPLAY } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — DoDeliver",
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-display text-xl font-bold text-ink">Contact</h2>
             <p className="mt-3">
-              {ADDRESS}. Phone {PHONE_DISPLAY}. Email {EMAIL}.
+              Phone {PHONE_DISPLAY}. Email {EMAIL}.
             </p>
           </section>
         </article>
