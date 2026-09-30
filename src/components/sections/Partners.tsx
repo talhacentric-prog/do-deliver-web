@@ -22,13 +22,13 @@ function Marquee({
         {loop.map((item, i) => (
           <div
             key={`${item.name}-${i}`}
-            className="flex h-[4.5rem] w-[168px] items-center justify-center rounded-2xl border border-line bg-white px-4"
+            className="flex h-[5.25rem] w-[200px] items-center justify-center rounded-2xl border border-line bg-white px-5"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={item.src}
               alt={item.name}
-              className="max-h-12 max-w-[132px] object-contain"
+              className="max-h-16 max-w-[168px] object-contain"
             />
           </div>
         ))}

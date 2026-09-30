@@ -1,4 +1,3 @@
-import CourierLoader from "@/components/CourierLoader";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import CTA from "@/components/sections/CTA";
@@ -13,7 +12,6 @@ import WhyUs from "@/components/sections/WhyUs";
 export default function Home() {
   return (
     <>
-      <CourierLoader />
       <Header />
       <main className="flex-1">
         <Hero />

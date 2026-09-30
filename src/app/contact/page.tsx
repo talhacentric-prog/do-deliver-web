@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import CourierLoader from "@/components/CourierLoader";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ContactFormSection from "@/components/contact/ContactFormSection";
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <CourierLoader />
       <Header />
       <main className="flex-1">
         <PageHero title="Contact Us" breadcrumb="Contact Us" />

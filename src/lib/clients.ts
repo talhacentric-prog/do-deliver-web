@@ -31,9 +31,8 @@ export const clients = [
 ] as const;
 
 export const couriers = [
-  { name: "TCS", src: "/couriers/tcs.svg" },
-  { name: "Leopards", src: "/couriers/leopards.svg" },
-  { name: "M&P", src: "/couriers/mnp.svg" },
-  { name: "Trax", src: "/couriers/trax.svg" },
-  { name: "Daraz Express", src: "/couriers/daraz.svg" },
+  { name: "TCS", src: "/couriers/tcs.png" },
+  { name: "Leopards", src: "/couriers/leopards.png" },
+  { name: "M&P", src: "/couriers/mnp.png" },
+  { name: "Trax", src: "/couriers/trax.png" },
 ] as const;
